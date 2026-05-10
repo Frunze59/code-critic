@@ -41,7 +41,7 @@ function App() {
       <AnalysisTypeSelector analysisType={analysisType} setAnalysisType={setAnalysisType} />
       <CodeInput code={code} setCode={setCode} />
       <ParametersForm analysisType={analysisType} parameters={parameters} setParameters={setParameters} />
-      <button onClick={handleSubmit} disabled={isLoading}>
+      <button className="submit-btn" onClick={handleSubmit} disabled={isLoading}>
         {isLoading ? 'Analysing...' : 'Analyse Code'}
       </button>
       <ResultsViewer result={result?.content ?? null} />
