@@ -1,3 +1,4 @@
+import logo from './assets/logo.png';
 import { useState } from 'react'
 import './App.css'
 import type { ProcessedOutput } from './types';
@@ -6,6 +7,7 @@ import CodeInput from './components/CodeInput';
 import ParametersForm from './components/ParametersForm';
 import ResultsViewer from './components/ResultsViewer';
 import ExportPanel from './components/ExportPanel';
+
 
 function App() {
   const [analysisType, setAnalysisType] = useState<string>('');
@@ -37,7 +39,10 @@ function App() {
 
   return (
     <div className="app">
+    <div className="app-header">
+      <img src={logo} alt="Code Critic logo" className="logo" />
       <h1>Code Critic</h1>
+    </div>
       <AnalysisTypeSelector analysisType={analysisType} setAnalysisType={setAnalysisType} />
       <CodeInput code={code} setCode={setCode} />
       <ParametersForm analysisType={analysisType} parameters={parameters} setParameters={setParameters} />

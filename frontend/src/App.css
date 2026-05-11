@@ -11,6 +11,17 @@
   text-align: center;
   margin-bottom: 8px;
 }
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.logo {
+  width: 96px;
+  height: 96px;
+}
 
 /* Section cards */
 .analysis-type-selector,
