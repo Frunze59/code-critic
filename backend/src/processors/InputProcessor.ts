@@ -22,6 +22,15 @@ function processInput(rawInput: any): NormalizedInput {
   if (!rawInput.code_input) {
     throw new Error('Code input is required');
   }
+
+  const lineCount = rawInput.code_input.split('\n').length;
+  if (lineCount < 100) {
+    throw new Error('Code must be at least 100 lines long');
+  }
+  if (lineCount > 500) {
+    throw new Error('Code must not exceed 500 lines');
+  }
+  
   const detected = hljs.highlightAuto(rawInput.code_input);
   return {
     analysis_type: rawInput.analysis_type,
