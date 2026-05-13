@@ -1,5 +1,12 @@
 import type { NormalizedInput } from '../processors/InputProcessor.js';
 
+function getDepthInstruction(lineCount: number): string {
+  if (lineCount < 200) {
+    return 'Provide a concise, focused analysis highlighting the most important issues only.';
+  }
+  return 'Provide a thorough, in-depth analysis covering all aspects of the code in detail.';
+}
+
 function buildQualityPrompt(input: NormalizedInput): string {
   return `
 You are an expert code reviewer specializing in ${input.code.language} code quality analysis.
@@ -11,10 +18,29 @@ Code to analyze:
 ${input.code.content}
 \`\`\`
 
+${getDepthInstruction(input.code.line_count)}
+
 Analysis requirements:
 - Strictness level: ${input.parameters.strictness_level || 'medium'}
 - Naming conventions: ${input.parameters.naming_conventions || 'standard'}
 - Code organization: ${input.parameters.code_organization || 'any'}
+
+Here is an example of a good analysis response:
+
+## Readability Score
+8/10 - The code is well-structured with clear variable names. Minor issues with inline comments.
+
+## Complexity Metrics
+- Cyclomatic Complexity: 3 - Low complexity, easy to follow
+- Cognitive Complexity: 4 - Simple logic with minimal nesting
+
+## Best Practice Violations
+1. **Line 12: Missing return type annotation**
+   - Type: Type Safety
+   - Severity: Low
+   - Suggestion: Add explicit return type for clarity
+
+Now analyze the provided code following this exact format.
 
 Provide your response in the following format:
 ## Readability Score
@@ -38,6 +64,8 @@ Code to analyze:
 \`\`\`${input.code.language}
 ${input.code.content}
 \`\`\`
+
+${getDepthInstruction(input.code.line_count)}
 
 Analysis requirements:
 - Security framework: ${input.parameters.security_framework || 'OWASP'}
