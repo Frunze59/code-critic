@@ -14,6 +14,7 @@ router.post('/analyze', async (req, res) => {
       const processedOutput = processOutput(output, normalizedInput.analysis_type, normalizedInput.code.language, 'unknown');
       res.json(processedOutput);
     } catch (error: unknown) {
+      console.error('Analysis error:', error);
       res.status(500).json({ error: 'Analysis failed', message: (error as Error).message });
     }
   });
