@@ -70,6 +70,16 @@
   background-color: var(--mint-dark);
 }
 
+/* Error message */
+.error-message {
+  background: #fdecea;
+  border: 1px solid #f5c6c6;
+  color: var(--error);
+  border-radius: 6px;
+  padding: 12px 16px;
+  font-size: 0.9rem;
+}
+
 /* Results viewer */
 .results-viewer pre {
   background: var(--beige);

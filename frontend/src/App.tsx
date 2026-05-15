@@ -15,9 +15,11 @@ function App() {
   const [parameters, setParameters] = useState<Record<string, string>>({});
   const [result, setResult] = useState<ProcessedOutput | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async () => {
     setIsLoading(true);
+    setError(null);
     try {
       const apiUrl = import.meta.env.DEV ? 'http://localhost:3001' : '';
       const response = await fetch(`${apiUrl}/api/analyze`, {
@@ -29,10 +31,14 @@ function App() {
           parameters: parameters
         })
       });
-      const data: ProcessedOutput = await response.json();
-      setResult(data);
-    } catch (error) {
-      console.error('Analysis failed:', error);
+      const data = await response.json();
+      if (!response.ok) {
+        setError(data.message || 'Analysis failed');
+        return;
+      }
+      setResult(data as ProcessedOutput);
+    } catch (err) {
+      setError('Could not connect to the server. Please try again.');
     } finally {
       setIsLoading(false);
     }
@@ -50,6 +56,7 @@ function App() {
       <button className="submit-btn" onClick={handleSubmit} disabled={isLoading}>
         {isLoading ? 'Analysing...' : 'Analyse Code'}
       </button>
+      {error && <div className="error-message">{error}</div>}
       <ResultsViewer result={result?.content ?? null} />
       <ExportPanel result={result} isLoading={isLoading} />
     </div>

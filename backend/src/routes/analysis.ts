@@ -15,7 +15,9 @@ router.post('/analyze', async (req, res) => {
       res.json(processedOutput);
     } catch (error: unknown) {
       console.error('Analysis error:', error);
-      res.status(500).json({ error: 'Analysis failed', message: (error as Error).message });
+      const message = (error as Error).message;
+      const isValidationError = message.includes('required') || message.includes('lines');
+      res.status(isValidationError ? 400 : 500).json({ error: 'Analysis failed', message });
     }
   });
 
