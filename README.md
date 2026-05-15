@@ -34,7 +34,10 @@ cd code-critic
 
 ```bash
 echo "ANTHROPIC_API_KEY=your_key_here" > backend/.env
+echo "ANTHROPIC_MODEL=claude-3-5-haiku-20241022" >> backend/.env
 ```
+
+> Set `ANTHROPIC_MODEL` to any model available on your Anthropic account. Check [console.anthropic.com](https://console.anthropic.com) for available models.
 
 3. Start the app:
 

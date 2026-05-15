@@ -7,7 +7,7 @@ const anthropic = new Anthropic({
 
 async function callAnthropicAPI(prompt: string): Promise<string> {
     const message = await anthropic.messages.create({
-        model: 'claude-3-5-haiku-20241022',
+        model: process.env.ANTHROPIC_MODEL || 'claude-3-5-haiku-20241022',
         max_tokens: 1500,
         messages: [{ role: 'user', content: prompt }],
       });
