@@ -19,7 +19,8 @@ function App() {
   const handleSubmit = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/api/analyze`, {
+      const apiUrl = import.meta.env.DEV ? 'http://localhost:3001' : '';
+      const response = await fetch(`${apiUrl}/api/analyze`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
