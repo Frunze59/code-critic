@@ -38,6 +38,8 @@ echo "ANTHROPIC_MODEL=claude-haiku-4-5-20251001" >> backend/.env
 ```
 
 > Set `ANTHROPIC_MODEL` to any model available on your Anthropic account. Check [console.anthropic.com](https://console.anthropic.com) for available models.
+>
+> **No API key?** You can ask the project author for a shared ngrok link to test the live instance directly — no setup required.
 
 3. Start the app:
 
