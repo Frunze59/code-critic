@@ -77,7 +77,7 @@ Open [http://localhost:5173](http://localhost:5173).
 ## Usage
 
 1. **Select analysis type** — choose between Quality or Security analysis
-2. **Input your code** — paste directly or upload a file (100–500 lines recommended)
+2. **Input your code** — paste directly or upload a file (100–500 lines required)
 3. **Set parameters** — configure strictness, naming conventions, or security framework
 4. **Click Analyse Code** — the AI analyzes your code and returns a structured report
 5. **Review results** — read the findings, scores, and recommendations
