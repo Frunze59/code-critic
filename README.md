@@ -59,6 +59,7 @@ docker compose up --build
 cd backend
 npm install
 echo "ANTHROPIC_API_KEY=your_key_here" > .env
+echo "ANTHROPIC_MODEL=claude-haiku-4-5-20251001" >> .env
 npm run dev
 ```
 
