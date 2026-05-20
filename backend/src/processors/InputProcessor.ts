@@ -37,7 +37,7 @@ function processInput(rawInput: any): NormalizedInput {
     code: {
       content: rawInput.code_input,
       language: detected.language || 'unknown',
-      line_count: rawInput.code_input.split('\n').length,
+      line_count: lineCount,
       file_name: rawInput.file_name || 'unnamed',
     },
     parameters: rawInput.parameters || {},
